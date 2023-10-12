@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+  <div *ngIf="formConfig$ | async as formConfig" class="dynamic-form-container">
+      <ng-container *ngFor="let config of formConfig.config; let i = index">
+        <form [formGroup]="$any(form.get(config.id + ''))">
+            <h3>{{ config.question }}</h3>
+
+            <ng-container *ngFor="let control of config.controls | keyvalue: comparatorFn">
+              <ng-container
+                [ngComponentOutlet]="controlResolver.resolve(control.value.controlType) | async"
+                [ngComponentOutletInjector]="control.key | controlInjector: control.value"></ng-container>
+            </ng-container>
+          <hr class="my-2">
+        </form>
+      </ng-container>
+  </div>
+</form>

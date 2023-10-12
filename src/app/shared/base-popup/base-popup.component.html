@@ -1,0 +1,63 @@
+<div class="wrapper">
+  <header
+    class="popup-header bg-neutral-100 p-4 font-base flex items-center border-b border-grey-300 text-neutral-800"
+    [ngClass]="{
+      'justify-between': hasClose,
+      'justify-center': !hasClose
+    }"
+  >
+    <h3 class="!m-0">{{ title }}</h3>
+
+    <div
+      *ngIf="hasClose"
+      (click)="fireEv.emit('close')"
+      class="close-btn opacity-70 hover:opacity-100 transition cursor-pointer flex justify-center items-center w-8 h-8 rounded bg-white text-neutral-800 border-grey-400 border ml-2"
+    >
+      <mat-icon>closeNotification</mat-icon>
+    </div>
+  </header>
+
+  <mat-dialog-content>
+    <ng-content></ng-content>
+  </mat-dialog-content>
+
+  <footer
+    *ngIf="
+      (submitButton && submitButton.text) ||
+      (cancelButton && cancelButton.text)
+    "
+    class="border-t bg-neutral-100 border-grey-300 popup-footer p-4 flex justify-between items-center"
+    [ngClass]="{
+      '!justify-end': !cancelButton || (cancelButton && !cancelButton.text)
+    }"
+  >
+    <button
+      mat-stroked-button
+      [type]="cancelButton.type"
+      *ngIf="cancelButton && cancelButton.text"
+      [disabled]="cancelButton.isDisabled"
+      [ngClass]="{ 'w-full mr-1': cancelButton.isFullWidth }"
+      (click)="fireEv.emit('cancel')"
+    >
+      <div class="flex items-center">
+        <div>{{ cancelButton.text }}</div>
+        <div *ngIf="cancelButton.icon" class="ml-1">{{ cancelButton.icon }}</div>
+      </div>
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [type]="submitButton.type"
+      *ngIf="submitButton && submitButton.text"
+      [disabled]="submitButton.isDisabled"
+      [ngClass]="{ 'w-full': submitButton.isFullWidth }"
+      (click)="fireEv.emit('confirm')"
+    >
+      <div class="flex items-center">
+        <div>{{ submitButton.text }}</div>
+        <div *ngIf="submitButton.icon" class="ml-1">{{ submitButton.icon }}</div>
+      </div>
+    </button>
+  </footer>
+</div>

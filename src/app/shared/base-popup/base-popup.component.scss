@@ -1,0 +1,19 @@
+:host {
+  .wrapper {
+    app-button {
+      display: block;
+    }
+  }
+
+  mat-dialog-content {
+    padding: theme('padding.8');
+  }
+
+  .full-embedded-btn::ng-deep button {
+    width: 100%;
+  }
+
+  button {
+    @apply flex items-center;
+  }
+}

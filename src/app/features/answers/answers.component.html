@@ -1,0 +1,20 @@
+<ng-container *ngIf="(review$ | async) as reviews">
+  <div class="flex items-center gap-4">
+    <a [routerLink]="'/'" class="flex flex-col items-center sticky -left-1/4">
+      <div class="text-xl">👈</div>
+      <span class="text-[10px] text-neutral-400">Back</span>
+    </a>
+
+    <h2 class="text-center w-full">Your answers for the quiz 🪄</h2>
+  </div>
+
+  <ng-container *ngIf="reviews.size">
+    <div class="flex flex-col gap-4">
+      <ng-container *ngFor="let review of reviews | keyvalue">
+        <app-answer-card
+          [answer]="$any(review.value)"
+        ></app-answer-card>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>

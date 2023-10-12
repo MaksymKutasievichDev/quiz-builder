@@ -1,0 +1,13 @@
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()"  class="shadow rounded p-5 bg-white">
+  <h2 class="text-center">Hi, below you can create a quiz!👇</h2>
+
+  <div class="flex items-center justify-center mb-3">
+    <button type="button" (click)="addNewQuestion()" mat-stroked-button color="primary">Add new question ➕</button>
+  </div>
+
+  <app-dynamic-form [(form)]="quizForm"></app-dynamic-form>
+
+  <div *ngIf="!!(size$ | async)" class="flex items-center justify-center mt-2">
+    <button [disabled]="quizForm.invalid" mat-raised-button color="primary">Review my answers 👉</button>
+  </div>
+</form>

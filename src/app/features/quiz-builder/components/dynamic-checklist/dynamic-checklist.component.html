@@ -1,0 +1,15 @@
+<fieldset class="my-4" >
+  <legend class="text-sm font-medium">{{ title }}</legend>
+  <form formArrayName="checkList">
+    <ng-container *ngFor="let answer of listArray.controls; let i = index">
+      <mat-form-field class="mb-2" color="accent" appearance="outline">
+        <mat-label>{{ answerLabel }}</mat-label>
+        <input [formControlName]="i" matInput [placeholder]="answerPlaceholder">
+      </mat-form-field>
+    </ng-container>
+  </form>
+
+  <button *ngIf="listArray.controls.length < maxOptions" type="button" (click)="addOption()" mat-button class="flex">
+    {{ addAnswerText }}
+  </button>
+</fieldset>

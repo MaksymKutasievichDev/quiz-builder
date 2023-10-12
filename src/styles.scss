@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+body * {
+  font-family: 'DM Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-image: linear-gradient(to bottom right, #FDFCFB, #E2D1C3);
+}
+
+@keyframes input-message-animation {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+mat-form-field {
+  .mdc-notched-outline__notch {
+    border-right: 0;
+  }
+
+  @apply w-full;
+}
+
+fieldset {
+  @apply border border-amber-400 rounded-xl p-3;
+}
+
+.input-error {
+  animation-name: input-message-animation;
+  animation-duration: 300ms;
+  @apply text-red-500 text-xs ml-2;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}

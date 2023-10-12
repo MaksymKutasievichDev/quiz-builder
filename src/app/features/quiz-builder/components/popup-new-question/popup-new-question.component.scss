@@ -1,0 +1,9 @@
+:host{
+  form {
+    mat-radio-group {
+      mat-radio-button + mat-radio-button {
+        @apply ml-2;
+      }
+    }
+  }
+}
